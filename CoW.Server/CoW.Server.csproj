@@ -24,6 +24,7 @@
     <ProjectReference Include="..\cow.client\cow.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\CoW.Models\CoW.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

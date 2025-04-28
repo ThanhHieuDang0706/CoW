@@ -2,82 +2,29 @@
 {
     public class ApiResponse<T>
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public T Data { get; set; }
-        public ApiResponse(bool success, string message, T data)
+        private ApiResponse() { }
+
+        private ApiResponse(bool succeeded, T result, IEnumerable<string> errors)
         {
-            Success = success;
-            Message = message;
-            Data = data;
+            Succeeded = succeeded;
+            Result = result;
+            Errors = errors;
         }
 
-        public ApiResponse(bool success, string message)
+        public bool Succeeded { get; set; }
+
+        public T Result { get; set; }
+
+        public IEnumerable<string> Errors { get; set; }
+
+        public static ApiResponse<T> Success(T result)
         {
-            Success = success;
-            Message = message;
-            Data = default;
+            return new ApiResponse<T>(true, result, new List<string>());
         }
 
-        public ApiResponse(bool success, T data)
+        public static ApiResponse<T> Failure(IEnumerable<string> errors)
         {
-            Success = success;
-            Message = string.Empty;
-            Data = data;
-        }
-
-        public ApiResponse(T data)
-        {
-            Success = true;
-            Message = string.Empty;
-            Data = data;
-        }
-
-        public ApiResponse()
-        {
-            Success = true;
-            Message = string.Empty;
-            Data = default;
-        }
-
-        public static ApiResponse<T> Ok(T data)
-        {
-            return new ApiResponse<T>(true, data);
-        }
-
-        public static ApiResponse<T> Ok(string message, T data)
-        {
-            return new ApiResponse<T>(true, message, data);
-        }
-
-        public static ApiResponse<T> Error(string message)
-        {
-            return new ApiResponse<T>(false, message);
-        }
-
-        public static ApiResponse<T> Error(string message, T data)
-        {
-            return new ApiResponse<T>(false, message, data);
-        }
-
-        public static ApiResponse<T> Error(string message, T data, bool success)
-        {
-            return new ApiResponse<T>(success, message, data);
-        }
-
-        public static ApiResponse<T> Error(T data)
-        {
-            return new ApiResponse<T>(false, data);
-        }
-
-        public static ApiResponse<T> Error()
-        {
-            return new ApiResponse<T>(false, string.Empty);
-        }
-
-        public static ApiResponse<T> Error(string message, bool success)
-        {
-            return new ApiResponse<T>(success, message);
+            return new ApiResponse<T>(false, default, errors);
         }
     }
 }
