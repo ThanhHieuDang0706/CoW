@@ -13,14 +13,21 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.SpaProxy" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoW.Application\CoW.Application.csproj" />
     <ProjectReference Include="..\cow.client\cow.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
