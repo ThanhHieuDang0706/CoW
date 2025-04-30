@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Portable.BouncyCastle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoW.Models\CoW.Models.csproj" />
   </ItemGroup>
 
 </Project>
